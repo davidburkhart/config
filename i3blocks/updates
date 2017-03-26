@@ -1,0 +1,24 @@
+#!/bin/bash                                                                                                        
+# update package list
+sudo /home/dave/bin/apt-get-update >> /home/dave/bin/apt-get-update.log
+
+# count how many updates we have got
+ups=`/usr/lib/update-notifier/apt-check --human-readable | head -1 | awk '{print $1;}'`
+
+# print the results
+if [ "$ups" -eq "1" ]
+then
+  echo "There is 1 update"
+  echo
+  echo \#FF0000
+elif [ "$ups" -gt "1" ]
+then
+  echo "There are $ups updates"
+  echo
+  echo \#FF0000
+else
+  echo "Up to date"
+  echo
+  echo \#00FF00
+fi
+

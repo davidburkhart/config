@@ -154,9 +154,11 @@ mode "resize" {
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (p) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3lock, mode "default"
+    bindsym l exec --no-startup-id cinnamon-screensaver-command -l, mode "default"
+    #bindsym l exec --no-startup-id i3lock, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id i3lock, exec --no-startup-id systemctl suspend, mode "default"
+    bindsym s exec --no-startup-id cinnamon-screensaver-command -l, exec --no-startup-id systemctl suspend, mode "default"
+    #bindsym s exec --no-startup-id i3lock, exec --no-startup-id systemctl suspend, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym p exec --no-startup-id systemctl poweroff, mode "default"
 
@@ -168,12 +170,13 @@ bindsym $mod+Delete mode "$mode_system"
 
 
 # Launch mode, one app per key.
-set $mode_launch Run (c) chromium, (t) thunderbird, (e) nautilus, (s) synaptic
+set $mode_launch Run (c) chromium, (t) thunderbird, (e) file manager, (s) synaptic, (q) libreoffice calc
 mode "$mode_launch" {
     bindsym c exec chromium-browser --password-store=gnome ; mode "default"
     bindsym t exec thunderbird ; mode "default"
-    bindsym e exec nautilus ; mode "default"
+    bindsym e exec pcmanfm ; mode "default"
     bindsym s exec gksudo synaptic ; mode "default"
+    bindsym q exec libreoffice --calc ; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -185,8 +188,21 @@ bindsym $mod+x mode "$mode_launch"
 # finds out, if available)
 bar {
         status_command i3blocks
+	font pango: sans 10
+
+	#colors {
+	#	background #232323
+	#	statusline #DCDCDC
+	#}
 }
 
-bindsym $mod+l exec --no-startup-id i3lock
+bindsym $mod+l exec --no-startup-id cinnamon-screensaver-command -l
 exec --no-startup-id nm-applet
-exec volumeicon
+exec --no-startup-id volumeicon
+#exec --no-startup-id update-manager --no-focus-on-map
+
+#client.focused          #3F8AC2 #096BAA #00BAA7 #00DA8E
+#client.focused_inactive #333333 #5F676A #ffffff #484e50
+#client.unfocused        #333333 #424242 #888888 #292d2e 
+#client.urgent           #C10004 #900000 #ffffff #900000
+

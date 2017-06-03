@@ -151,6 +151,14 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (p) shutdown
 mode "$mode_system" {
@@ -170,13 +178,14 @@ bindsym $mod+Delete mode "$mode_system"
 
 
 # Launch mode, one app per key.
-set $mode_launch Run (c) chromium, (t) thunderbird, (e) file manager, (s) synaptic, (q) libreoffice calc
+set $mode_launch Run (c) chromium, (t) thunderbird, (e) file manager, (s) synaptic, (q) libreoffice calc (w) Windows
 mode "$mode_launch" {
     bindsym c exec chromium-browser --password-store=gnome ; mode "default"
     bindsym t exec thunderbird ; mode "default"
     bindsym e exec pcmanfm ; mode "default"
     bindsym s exec gksudo synaptic ; mode "default"
     bindsym q exec libreoffice --calc ; mode "default"
+    bindsym w exec VBoxManage startvm "Windows 7" ; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -200,6 +209,8 @@ bindsym $mod+l exec --no-startup-id cinnamon-screensaver-command -l
 exec --no-startup-id nm-applet
 exec --no-startup-id volumeicon
 #exec --no-startup-id update-manager --no-focus-on-map
+exec --no-startup-id numlockx on
+exec --no-startup-id chromium-browser --password-store=gnome --no-startup-window
 
 #client.focused          #3F8AC2 #096BAA #00BAA7 #00DA8E
 #client.focused_inactive #333333 #5F676A #ffffff #484e50

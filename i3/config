@@ -193,6 +193,17 @@ mode "$mode_launch" {
 bindsym $mod+x mode "$mode_launch"
 
 
+set $mode_monitor Monitor mode: (1) Laptop only (2) Docking Station + Laptop (a) arandr
+mode "$mode_monitor" {
+    bindsym 1 exec ~/.screenlayout/only_laptop.sh ; mode "default"
+    bindsym 2 exec ~/.screenlayout/home.sh ; mode "default"
+    bindsym a exec arandr ; mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+m mode "$mode_monitor"
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -207,7 +218,7 @@ bar {
 
 bindsym $mod+l exec --no-startup-id cinnamon-screensaver-command -l
 exec --no-startup-id nm-applet
-exec --no-startup-id volumeicon
+#exec --no-startup-id volumeicon
 #exec --no-startup-id update-manager --no-focus-on-map
 exec --no-startup-id numlockx on
 exec --no-startup-id chromium-browser --password-store=gnome --no-startup-window

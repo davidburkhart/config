@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+  DIR="${BLOCK_INSTANCE:-$HOME}"
+  thunar "$DIR"
+fi
+
+/usr/lib/i3blocks/disk
+

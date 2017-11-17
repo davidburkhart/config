@@ -1,0 +1,15 @@
+#!/bin/bash
+
+DISPLAYS=$(xrandr -q \
+  |grep ' connected' \
+  |awk '{ print $1; }' \
+  |tr '\n' ' ' \
+  |sed 's/ $/\n/')
+
+echo $DISPLAYS
+echo $DISPLAYS
+
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+  arandr
+fi
+

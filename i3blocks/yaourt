@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+################################
+# Shows AUR packages that need updated.
+#
+# Dependencies:
+# - checkupdates
+# - yaourt
+# - [notify-send]
+#
+# @return {Number}: Outdated packages
+################################
+
+dir=$(dirname $0)
+source $dir/util.sh
+
+full=""
+status=0
+
+archPackages=$(checkupdates)
+aurPackages=$(yaourt -Quaq)
+numArchPackages=$(numLines "$archPackages")
+numAurPackages=$(numLines "$aurPackages")
+numAllPackages=$(calc "$numAurPackages + $numArchPackages")
+
+#echo $numArchPackages
+#echo $numAurPackages
+#echo $numAllPackages
+
+case $BLOCK_BUTTON in
+	1)
+		gnome-terminal -e "sh -c 'yaourt -Syu --aur ; echo \"Done...press any key\" ; pkill -RTMIN+12 i3blocks ; read -n 1'"
+	;;
+	# right click: show packages
+	3)
+		allPackages=$(echo 'arch';echo "$archPackages";echo 'aur';echo "$aurPackages")
+		notify-send "Updates" "$allPackages"
+	;;
+esac
+
+# print the results
+echo "$numAllPackages"
+echo "$numAllPackages"
+if [ "$numAllPackages" -gt "0" ]
+then
+  echo \#FF0000
+else
+  echo \#00FF00
+fi
+
+
+
+echo $full
+exit $status
+

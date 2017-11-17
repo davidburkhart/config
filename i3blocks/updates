@@ -22,3 +22,7 @@ else
   echo \#00FF00
 fi
 
+if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
+  gnome-terminal -e "sudo update-manager"
+fi
+

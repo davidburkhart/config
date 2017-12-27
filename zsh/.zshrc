@@ -91,3 +91,5 @@ alias updates=yaourt -Syu --aur
 
 zstyle ':completion:*' special-dirs true
 
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+

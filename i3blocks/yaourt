@@ -11,6 +11,12 @@
 # @return {Number}: Outdated packages
 ################################
 
+case $BLOCK_BUTTON in
+	1)
+		gnome-terminal -e "sh -c 'yaourt -Syu --aur ; echo \"Done...press any key\" ; pkill -RTMIN+12 i3blocks ; read -n 1'"
+	;;
+esac
+
 dir=$(dirname $0)
 source $dir/util.sh
 
@@ -28,10 +34,6 @@ numAllPackages=$(calc "$numAurPackages + $numArchPackages")
 #echo $numAllPackages
 
 case $BLOCK_BUTTON in
-	1)
-		gnome-terminal -e "sh -c 'yaourt -Syu --aur ; echo \"Done...press any key\" ; pkill -RTMIN+12 i3blocks ; read -n 1'"
-	;;
-	# right click: show packages
 	3)
 		allPackages=$(echo 'arch';echo "$archPackages";echo 'aur';echo "$aurPackages")
 		notify-send "Updates" "$allPackages"

@@ -6,6 +6,10 @@ API_KEY="e01b0364da7ee5adaf824bc73cfa9e91"
 # Check on http://openweathermap.org/find
 CITY_ID="${BLOCK_INSTANCE}"
 
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+  chromium "https://openweathermap.org/city/${CITY_ID}" > /dev/null
+fi
+
 URGENT_LOWER=0
 URGENT_HIGHER=30
 
@@ -58,7 +62,4 @@ if [[ "${WEATHER_TEMP}" -lt "${URGENT_LOWER}" ]] || [[ "${WEATHER_TEMP}" -gt "${
   exit 33
 fi
 
-if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
-  xdg-open "https://openweathermap.org/city/${CITY_ID}"
-fi
 

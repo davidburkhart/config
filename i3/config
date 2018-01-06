@@ -18,7 +18,8 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+font pango: sans 9
+#font pango:DejaVu Sans Mono 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -195,7 +196,7 @@ mode "$mode_launch" {
     bindsym i exec idea.sh ; mode "default"
     #bindsym s exec gksudo synaptic ; mode "default"
     #bindsym q exec libreoffice --calc ; mode "default"
-    bindsym q exec xdg-open ~/Dokumente/Stunden/Stunden_2017.ods ; mode "default"
+    bindsym q exec xdg-open ~/Dokumente/Stunden/Stunden_2018.ods ; mode "default"
     bindsym w exec VBoxManage startvm "Windows 7" ; mode "default"
 
     bindsym Return mode "default"
@@ -219,13 +220,19 @@ bindsym $mod+m mode "$mode_monitor"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3blocks
-	font pango: sans 10
+  status_command i3blocks
+  #font pango:DejaVu, Font Awesome, sans 10
+  font pango:sans 10
 
-	#colors {
-	#	background #232323
-	#	statusline #DCDCDC
-	#}
+  colors {
+    separator #666666
+    background #000000
+    statusline #ffffff
+    focused_workspace #4c7899 #285577 #ffffff
+    active_workspace #333333 #5f676a #ffffff
+    inactive_workspace #333333 #222222 #888888
+    urgent_workspace #2f343a #900000 #ffffff
+  }
 }
 
 #bindsym $mod+l exec --no-startup-id cinnamon-screensaver-command -l
@@ -237,10 +244,16 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id volumeicon
 exec --no-startup-id numlockx on
 exec --no-startup-id chromium --password-store=gnome --no-startup-window
+exec --no-startup-id amixer -q set Master mute
 
-#client.focused          #3F8AC2 #096BAA #00BAA7 #00DA8E
-#client.focused_inactive #333333 #5F676A #ffffff #484e50
-#client.unfocused        #333333 #424242 #888888 #292d2e 
-#client.urgent           #C10004 #900000 #ffffff #900000
+#
+#
+#
+#
 
 
+
+client.focused #4c7899 #285577 #ffffff #2e9ef4
+client.focused_inactive #333333 #5f676a #ffffff #484e50
+client.unfocused #333333 #222222 #888888 #292d2e
+client.urgent #2f343a #900000 #ffffff #900000

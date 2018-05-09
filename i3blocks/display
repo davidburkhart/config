@@ -1,10 +1,6 @@
 #!/bin/bash
 
-DISPLAYS=$(xrandr -q \
-  |grep ' connected' \
-  |awk '{ print $1; }' \
-  |tr '\n' ' ' \
-  |sed 's/ $/\n/')
+DISPLAYS=$($HOME/bin/print_displays.sh)
 
 echo $DISPLAYS
 echo $DISPLAYS

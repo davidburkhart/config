@@ -187,9 +187,9 @@ bindsym $mod+Delete mode "$mode_system"
 
 
 # Launch mode, one app per key.
-#set $mode_launch Run (c) chromium, (t) thunderbird, (e) file manager, (s) synaptic, (q) libreoffice calc (w) Windows
-set $mode_launch Run (c) chromium, (t) thunderbird, (e) file manager, (i) intellij, (q) calc, (w) Windows VM
+set $mode_launch Run (a) atom (c) chromium, (t) thunderbird, (e) file manager, (i) intellij, (q) calc, (w) Windows VM
 mode "$mode_launch" {
+    bindsym a exec atom ~/Dokumente ; mode "default"
     bindsym c exec chromium --password-store=gnome ; mode "default"
     bindsym t exec thunderbird ; mode "default"
     bindsym e exec thunar ; mode "default"
@@ -197,7 +197,7 @@ mode "$mode_launch" {
     #bindsym s exec gksudo synaptic ; mode "default"
     #bindsym q exec libreoffice --calc ; mode "default"
     bindsym q exec xdg-open ~/Dokumente/Stunden/Stunden_2018.ods ; mode "default"
-    bindsym w exec VBoxManage startvm "Windows 7" ; mode "default"
+    bindsym w exec VBoxManage startvm "Windows 7 2018" ; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -245,6 +245,11 @@ exec --no-startup-id nm-applet
 exec --no-startup-id numlockx on
 exec --no-startup-id chromium --password-store=gnome --no-startup-window
 exec --no-startup-id amixer -q set Master mute
+exec --no-startup-id amixer sget Capture|grep " \[on\]" && amixer -q set Capture toggle
+exec --no-startup-id $HOME/bin/update_displays.sh
+exec --no-startup-id $HOME/bin/notify_home.sh
+exec --no-startup-id $HOME/bin/adjust_brightness.sh
+
 
 #
 #

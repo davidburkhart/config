@@ -235,6 +235,10 @@ bar {
   }
 }
 
+bindsym           Print      exec scrot    $HOME/Bilder/ScreenShot-`date +%Y-%m-%d_%H-%M-%S`.png
+bindsym --release $Mod+Print exec scrot -s $HOME/Bilder/ScreenShot-`date +%Y-%m-%d_%H-%M-%S`-selection.png
+
+
 #bindsym $mod+l exec --no-startup-id cinnamon-screensaver-command -l
 bindsym $mod+l exec --no-startup-id $lock_screen
 #exec --no-startup-id cinnamon-screensaver

@@ -1,7 +1,7 @@
 if [[ -z "$SSH_CLIENT" ]]; then
   prompt_host=""
 else
-  prompt_host="%{$fg[magenta]%}($(hostname -s)) "
+  prompt_host="%{$fg[magenta]%}($USER@$(hostname -s)) "
 fi
 
 local is_root="%(!.%{$fg[red]%}[root] .)"

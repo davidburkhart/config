@@ -18,8 +18,9 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango: sans 9
-#font pango:DejaVu Sans Mono 8
+#font pango:nimbus sans 14
+#font pango: sans 9
+font pango:DejaVu Sans 11
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -187,10 +188,12 @@ bindsym $mod+Delete mode "$mode_system"
 
 
 # Launch mode, one app per key.
-set $mode_launch Run (a) atom (c) chromium, (t) thunderbird, (e) file manager, (i) intellij, (q) calc, (w) Windows VM
+set $mode_launch Run (a) atom (c) chromium, (d) code, (f) firefox, (t) thunderbird, (e) file manager, (i) intellij, (q) calc, (w) Windows VM
 mode "$mode_launch" {
     bindsym a exec atom ~/Dokumente ; mode "default"
     bindsym c exec chromium --password-store=gnome ; mode "default"
+    bindsym d exec code ~/Dokumente ; mode "default"
+    bindsym f exec firefox ; mode "default"
     bindsym t exec thunderbird ; mode "default"
     bindsym e exec thunar ; mode "default"
     bindsym i exec idea.sh ; mode "default"
@@ -221,13 +224,14 @@ bindsym $mod+m mode "$mode_monitor"
 # finds out, if available)
 bar {
   status_command i3blocks
-  #font pango:DejaVu, Font Awesome, sans 10
-  font pango:sans 10
+  font pango:DejaVu, Font Awesome, sans 11
+  #font pango:sans 10
+  # font pango:nimbus sans 14
 
   colors {
     separator #666666
     background #000000
-    statusline #ffffff
+    statusline #cccccc
     focused_workspace #4c7899 #285577 #ffffff
     active_workspace #333333 #5f676a #ffffff
     inactive_workspace #333333 #222222 #888888
@@ -253,6 +257,8 @@ exec --no-startup-id amixer sget Capture|grep " \[on\]" && amixer -q set Capture
 exec --no-startup-id $HOME/bin/update_displays.sh
 exec --no-startup-id $HOME/bin/notify_home.sh
 exec --no-startup-id $HOME/bin/adjust_brightness.sh
+
+exec compton -f
 
 
 #

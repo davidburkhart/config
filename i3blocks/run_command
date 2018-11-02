@@ -1,6 +1,9 @@
 #!/bin/bash                                                                                                        
-echo $BLOCK_INSTANCE
-
+#echo $BLOCK_INSTANCE
+#echo $BLOCK_INSTANCE | cut -c -3
+echo " "
+echo
+echo
 
 if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
   $BLOCK_INSTANCE

@@ -166,6 +166,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 set $lock_screen ~/bin/lock_screen.sh
+set $lock_screen_not_at_home ~/bin/lock_screen_not_at_home.sh
 #set $lock_screen i3lock -f -i /usr/share/pixmaps/hd_sky_blue_beach-1920x1080.png -t -k --timesize=64 --timepos="ix-800:iy+200" 
 #set $lock_screen i3lock --blur 5 -k --timesize=64 --timepos="ix-800:iy+200" 
 
@@ -191,12 +192,12 @@ bindsym $mod+Delete mode "$mode_system"
 set $mode_launch Run (a) atom (c) chromium, (d) code, (f) firefox, (t) thunderbird, (e) file manager, (i) intellij, (q) calc, (w) Windows VM
 mode "$mode_launch" {
     bindsym a exec atom ~/Dokumente ; mode "default"
-    bindsym c exec chromium --password-store=gnome ; mode "default"
+    bindsym c exec chromium ; mode "default"
     bindsym d exec code ~/Dokumente ; mode "default"
     bindsym f exec firefox ; mode "default"
     bindsym t exec thunderbird ; mode "default"
     bindsym e exec thunar ; mode "default"
-    bindsym i exec idea.sh ; mode "default"
+    bindsym i exec idea ; mode "default"
     #bindsym s exec gksudo synaptic ; mode "default"
     #bindsym q exec libreoffice --calc ; mode "default"
     bindsym q exec xdg-open ~/Dokumente/Stunden/Stunden_2018.ods ; mode "default"
@@ -224,7 +225,7 @@ bindsym $mod+m mode "$mode_monitor"
 # finds out, if available)
 bar {
   status_command i3blocks
-  font pango:DejaVu, Font Awesome, sans 11
+  font pango:DejaVu, Font Awesome, sans 12
   #font pango:sans 10
   # font pango:nimbus sans 14
 
@@ -247,11 +248,11 @@ bindsym --release $Mod+Print exec scrot -s $HOME/Bilder/ScreenShot-`date +%Y-%m-
 bindsym $mod+l exec --no-startup-id $lock_screen
 #exec --no-startup-id cinnamon-screensaver
 
-exec --no-startup-id xautolock -detectsleep -time 10 -locker "$lock_screen"
+exec --no-startup-id xautolock -detectsleep -time 10 -locker "$lock_screen_not_at_home"
 exec --no-startup-id nm-applet
 #exec --no-startup-id volumeicon
 exec --no-startup-id numlockx on
-exec --no-startup-id chromium --password-store=gnome --no-startup-window
+exec --no-startup-id chromium --no-startup-window
 exec --no-startup-id amixer -q set Master mute
 exec --no-startup-id amixer sget Capture|grep " \[on\]" && amixer -q set Capture toggle
 exec --no-startup-id $HOME/bin/update_displays.sh

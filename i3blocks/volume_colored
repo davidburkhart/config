@@ -1,0 +1,31 @@
+#!/bin/bash
+
+VOLUME=$(/usr/lib/i3blocks/volume $@)
+
+echo $VOLUME
+echo $VOLUME
+
+if [ "$VOLUME" = "MUTE" ]
+then
+  echo \#555555
+else
+  PERCENT=${VOLUME//[!0-9]/}
+  if [ $PERCENT -lt 20 ]
+  then
+    echo \#0392cf
+  elif [ $PERCENT -lt 40 ]
+  then
+    echo \#7bc043
+  elif [ $PERCENT -lt 60 ]
+  then
+    echo \#fdf498
+  elif [ $PERCENT -lt 80 ]
+  then
+    echo \#f37736
+  elif [ $PERCENT -le 100 ]
+  then
+    echo \#ee4035
+  else
+    echo \#FFFFFF
+  fi
+fi

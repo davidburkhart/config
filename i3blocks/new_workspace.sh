@@ -5,4 +5,6 @@ if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
 fi
 
 echo "new workspace"
+echo "new ws"
+echo ""
 

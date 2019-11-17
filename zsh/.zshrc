@@ -94,7 +94,7 @@ source $ZSH/oh-my-zsh.sh
 export VISUAL="vim"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/bin"
+export PATH="$HOME/bin:$PATH"
 alias o=xdg-open
 alias updates="yaourt -Syu --aur ; pkill -RTMIN+12 i3blocks"
 
@@ -103,4 +103,6 @@ zstyle ':completion:*' special-dirs true
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export LESS="-FXR"
+
+
 

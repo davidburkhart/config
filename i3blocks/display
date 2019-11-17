@@ -3,7 +3,7 @@
 DISPLAYS=$($HOME/bin/print_displays.sh)
 
 echo $DISPLAYS
-echo $DISPLAYS
+echo ""
 
 if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
   arandr

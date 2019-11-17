@@ -52,6 +52,6 @@ fi
 
 
 
-echo $full
+#echo $full
 exit $status
 

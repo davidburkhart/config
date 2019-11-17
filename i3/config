@@ -189,19 +189,21 @@ bindsym $mod+Delete mode "$mode_system"
 
 
 # Launch mode, one app per key.
-set $mode_launch Run (a) atom (c) chromium, (d) code, (f) firefox, (t) thunderbird, (e) file manager, (i) intellij, (q) calc, (w) Windows VM
+set $mode_launch Run (a)tom (c)hromium co(d)e (f)irefox (t)hunderbird fil(e)manager (i)ntellij (j)eclipse (q)calc (v)pn (w)indows
 mode "$mode_launch" {
-    bindsym a exec atom ~/Dokumente ; mode "default"
+    bindsym a exec atom $HOME/Dokumente ; mode "default"
     bindsym c exec chromium ; mode "default"
-    bindsym d exec code ~/Dokumente ; mode "default"
-    bindsym f exec firefox ; mode "default"
-    bindsym t exec thunderbird ; mode "default"
+    bindsym d exec code $HOME/Dokumente ; mode "default"
     bindsym e exec thunar ; mode "default"
+    bindsym f exec firefox ; mode "default"
     bindsym i exec idea ; mode "default"
+    bindsym j exec $HOME/bin/eclipse ; mode "default"
+    bindsym t exec thunderbird ; mode "default"
+    bindsym q exec xdg-open $HOME/Dokumente/Stunden/Stunden_2019.ods ; mode "default"
     #bindsym s exec gksudo synaptic ; mode "default"
     #bindsym q exec libreoffice --calc ; mode "default"
-    bindsym q exec xdg-open ~/Dokumente/Stunden/Stunden_2018.ods ; mode "default"
-    bindsym w exec VBoxManage startvm "Windows 7 2018" ; mode "default"
+    bindsym v exec $HOME/bin/vpn.sh ; mode "default"
+    bindsym w exec VBoxManage startvm "Windows 10" ; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -214,6 +216,8 @@ mode "$mode_monitor" {
     bindsym 1 exec ~/.screenlayout/only_laptop.sh ; mode "default"
     bindsym 2 exec ~/.screenlayout/home.sh ; mode "default"
     bindsym d exec ~/.screenlayout/only_docking_monitor.sh ; mode "default"
+    bindsym h exec ~/.screenlayout/laptop+hdmi_1920x1080.sh ; mode "default"
+    bindsym H exec ~/.screenlayout/laptop+hdmi_1920x1200.sh ; mode "default"
     bindsym a exec arandr ; mode "default"
 
     bindsym Return mode "default"
@@ -259,7 +263,7 @@ exec --no-startup-id $HOME/bin/update_displays.sh
 exec --no-startup-id $HOME/bin/notify_home.sh
 exec --no-startup-id $HOME/bin/adjust_brightness.sh
 
-exec compton -f
+exec --no-startup-id compton -f
 
 
 #

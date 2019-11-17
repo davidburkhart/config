@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VOLUME=$(/usr/lib/i3blocks/volume $@)
+VOLUME=$($HOME/.i3blocks/i3blocks-contrib/volume/volume $@)
 
 echo $VOLUME
 echo $VOLUME

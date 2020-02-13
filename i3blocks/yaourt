@@ -24,11 +24,26 @@ full=""
 status=0
 
 archPackages=$(checkupdates)
-aurPackages=$(yaourt -Quaq)
-numArchPackages=$(numLines "$archPackages")
-numAurPackages=$(numLines "$aurPackages")
-numAllPackages=$(calc "$numAurPackages + $numArchPackages")
+archResult=$?
 
+if [ $archResult -eq 0 ]
+then
+	aurPackages=$(yaourt -Quaq)
+	numArchPackages=$(numLines "$archPackages")
+	numAurPackages=$(numLines "$aurPackages")
+	numAllPackages=$(calc "$numAurPackages + $numArchPackages")
+	if [ "$numAllPackages" -gt "0" ]
+	then
+		color=\#FF0000
+	else
+		color=\#00FF00
+	fi
+else
+	numArchPackages="-"
+	numAurPackages="-"
+	numAllPackages="-"
+	color=\#FF0000
+fi
 #echo $numArchPackages
 #echo $numAurPackages
 #echo $numAllPackages
@@ -43,14 +58,7 @@ esac
 # print the results
 echo "$numAllPackages"
 echo "$numAllPackages"
-if [ "$numAllPackages" -gt "0" ]
-then
-  echo \#FF0000
-else
-  echo \#00FF00
-fi
-
-
+echo $color
 
 #echo $full
 exit $status

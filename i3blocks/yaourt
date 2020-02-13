@@ -26,7 +26,7 @@ status=0
 archPackages=$(checkupdates)
 archResult=$?
 
-if [ $archResult -eq 0 ]
+if [ $archResult -eq 0 ] || [ $archResult -eq 2 ]
 then
 	aurPackages=$(yaourt -Quaq)
 	numArchPackages=$(numLines "$archPackages")

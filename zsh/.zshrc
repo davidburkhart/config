@@ -101,6 +101,9 @@ alias updates="yaourt -Syu --aur ; pkill -RTMIN+12 i3blocks"
 zstyle ':completion:*' special-dirs true
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+alias ls="ls --group-directories-first --color=tty"
 
 export LESS="-FXR"
 

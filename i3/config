@@ -205,7 +205,7 @@ mode "$mode_launch" {
     bindsym i exec idea ; mode "default"
     bindsym j exec $HOME/bin/eclipse ; mode "default"
     bindsym t exec thunderbird ; mode "default"
-    bindsym q exec xdg-open $HOME/Dokumente/Stunden/Stunden_2019.ods ; mode "default"
+    bindsym q exec xdg-open $HOME/Dokumente/Stunden/Stunden_2020.ods ; mode "default"
     #bindsym s exec gksudo synaptic ; mode "default"
     #bindsym q exec libreoffice --calc ; mode "default"
     bindsym v exec $HOME/bin/vpn.sh ; mode "default"
@@ -271,6 +271,8 @@ exec --no-startup-id $HOME/bin/adjust_brightness.sh
 
 exec --no-startup-id compton -f
 
+# refresh updates after some time, as wifi takes time to connect on startup
+exec --no-startup-id sleep 5 && pkill -RTMIN+12 i3blocks
 
 #
 #

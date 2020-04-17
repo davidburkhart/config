@@ -217,7 +217,7 @@ mode "$mode_launch" {
 bindsym $mod+x mode "$mode_launch"
 
 
-set $mode_monitor Monitor mode: (a) arandr (1) Laptop only (2) Docking Station + Laptop (d) Docking Station only
+set $mode_monitor Monitor mode: (a) arandr (1) Laptop only (2) Docking Station + Laptop (d) Docking Station only (s|m|l) set dpi
 mode "$mode_monitor" {
     bindsym 1 exec ~/.screenlayout/only_laptop.sh ; mode "default"
     bindsym 2 exec ~/.screenlayout/home.sh ; mode "default"
@@ -225,7 +225,9 @@ mode "$mode_monitor" {
     bindsym h exec ~/.screenlayout/laptop+hdmi_1920x1080.sh ; mode "default"
     bindsym H exec ~/.screenlayout/laptop+hdmi_1920x1200.sh ; mode "default"
     bindsym a exec arandr ; mode "default"
-
+    bindsym l exec ~/bin/set_dpi.sh 192 ; mode "default"
+    bindsym m exec ~/bin/set_dpi.sh 168 ; mode "default"
+    bindsym s exec ~/bin/set_dpi.sh 96 ; mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }

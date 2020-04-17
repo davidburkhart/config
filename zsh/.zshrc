@@ -58,6 +58,7 @@ plugins=(
 	gradle
 	yarn
 	npm
+        fzf
 )
 
 source $ZSH/oh-my-zsh.sh

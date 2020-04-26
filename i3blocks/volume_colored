@@ -29,3 +29,7 @@ else
     echo \#FFFFFF
   fi
 fi
+
+if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
+  pavucontrol
+fi

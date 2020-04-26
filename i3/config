@@ -262,6 +262,7 @@ bindsym $mod+l exec --no-startup-id $lock_screen
 
 exec --no-startup-id xautolock -detectsleep -time 10 -locker "$lock_screen_not_at_home"
 exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
 #exec --no-startup-id volumeicon
 exec --no-startup-id numlockx on
 exec --no-startup-id chromium --no-startup-window

@@ -5,7 +5,7 @@
 #
 # Dependencies:
 # - checkupdates
-# - yaourt
+# - yay
 # - [notify-send]
 #
 # @return {Number}: Outdated packages
@@ -13,7 +13,7 @@
 
 case $BLOCK_BUTTON in
 	1)
-		gnome-terminal -- sh -c 'yaourt -Syu --aur ; echo \"Done...press any key\" ; pkill -RTMIN+12 i3blocks ; read -n 1' > /dev/null
+		gnome-terminal -- sh -c 'yay -Syu ; echo \"Done...press any key\" ; pkill -RTMIN+12 i3blocks ; read -n 1' > /dev/null
 	;;
 esac
 
@@ -28,7 +28,7 @@ archResult=$?
 
 if [ $archResult -eq 0 ] || [ $archResult -eq 2 ]
 then
-	aurPackages=$(yaourt -Quaq)
+	aurPackages=$(yay -Quaq)
 	numArchPackages=$(numLines "$archPackages")
 	numAurPackages=$(numLines "$aurPackages")
 	numAllPackages=$(calc "$numAurPackages + $numArchPackages")

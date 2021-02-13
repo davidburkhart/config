@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -7,8 +14,8 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussellfullpath"
-
+#ZSH_THEME="robbyrussellfullpath"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -58,7 +65,7 @@ plugins=(
 	gradle
 	yarn
 	npm
-        fzf
+	fzf
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -97,16 +104,17 @@ export VISUAL="vim"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$HOME/bin:$PATH"
 alias o=xdg-open
-alias updates="yaourt -Syu --aur ; pkill -RTMIN+12 i3blocks"
+alias updates="yay -Syu ; pkill -RTMIN+12 i3blocks"
 
 zstyle ':completion:*' special-dirs true
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-alias ls="ls --group-directories-first --color=tty"
+#alias ls="ls --group-directories-first --color=tty"
+alias ls="lsd --group-dirs first"
 
 export LESS="-FXR"
 
-
-
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

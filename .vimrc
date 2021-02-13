@@ -1,7 +1,8 @@
 colorscheme desert
+
 set ruler
 set nu
 set cursorcolumn
 set cursorline
-hi CursorLine term=bold cterm=bold guibg=Grey40
-
+hi CursorLine cterm=NONE ctermbg=234 ctermfg=NONE
+hi CursorColumn cterm=NONE ctermbg=234 ctermfg=NONE

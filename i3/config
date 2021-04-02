@@ -198,14 +198,16 @@ bindsym $mod+Delete mode "$mode_system"
 set $mode_launch Run (a)tom (c)hromium co(d)e (f)irefox (t)hunderbird fil(e)manager (i)ntellij (j)eclipse (q)calc (v)pn (w)indows
 mode "$mode_launch" {
     bindsym a exec atom $HOME/Dokumente ; mode "default"
-    bindsym c exec chromium ; mode "default"
+    bindsym c exec firefox -P default ; mode "default"
+    # bindsym c exec chromium ; mode "default"
     bindsym d exec code $HOME/Dokumente ; mode "default"
     bindsym e exec thunar ; mode "default"
-    bindsym f exec firefox ; mode "default"
+    bindsym f exec firefox -P default ; mode "default"
+    bindsym Shift+f exec firefox -P dm ; mode "default"
     bindsym i exec idea ; mode "default"
     bindsym j exec $HOME/bin/eclipse ; mode "default"
     bindsym t exec thunderbird ; mode "default"
-    bindsym q exec xdg-open $HOME/Dokumente/Stunden/Stunden_2020.ods ; mode "default"
+    bindsym q exec xdg-open $HOME/Dokumente/Stunden/Stunden_2021.ods ; mode "default"
     #bindsym s exec gksudo synaptic ; mode "default"
     #bindsym q exec libreoffice --calc ; mode "default"
     bindsym v exec $HOME/bin/vpn.sh ; mode "default"
@@ -222,8 +224,6 @@ mode "$mode_monitor" {
     bindsym 1 exec ~/.screenlayout/only_laptop.sh ; mode "default"
     bindsym 2 exec ~/.screenlayout/home.sh ; mode "default"
     bindsym d exec ~/.screenlayout/only_docking_monitor.sh ; mode "default"
-    bindsym h exec ~/.screenlayout/laptop+hdmi_1920x1080.sh ; mode "default"
-    bindsym H exec ~/.screenlayout/laptop+hdmi_1920x1200.sh ; mode "default"
     bindsym a exec arandr ; mode "default"
     bindsym l exec ~/bin/set_dpi.sh 192 ; mode "default"
     bindsym m exec ~/bin/set_dpi.sh 168 ; mode "default"
@@ -262,6 +262,7 @@ bindsym $mod+l exec --no-startup-id $lock_screen
 
 exec --no-startup-id xautolock -detectsleep -time 10 -locker "$lock_screen_not_at_home"
 exec --no-startup-id nm-applet
+exec --no-startup-id nextcloud
 exec --no-startup-id blueman-applet
 #exec --no-startup-id volumeicon
 exec --no-startup-id numlockx on
@@ -271,8 +272,8 @@ exec --no-startup-id amixer sget Capture|grep " \[on\]" && amixer -q set Capture
 exec --no-startup-id $HOME/bin/update_displays.sh
 exec --no-startup-id $HOME/bin/notify_home.sh
 exec --no-startup-id $HOME/bin/adjust_brightness.sh
-
-exec --no-startup-id compton -f
+exec --no-startup-id secret-tool lookup keepass Keepass.kbdx | keepassxc --pw-stdin /home/dave/Keepass.kdbx
+#exec --no-startup-id compton -f
 
 # refresh updates after some time, as wifi takes time to connect on startup
 exec --no-startup-id sleep 5 && pkill -RTMIN+12 i3blocks

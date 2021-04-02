@@ -1,2 +1,10 @@
 #!/bin/sh
-xrandr --output VIRTUAL1 --off --output eDP1 --off --output DP1 --off --output DP2-1 --off --output DP2-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP2-3 --off --output HDMI2 --off --output HDMI1 --off --output DP2 --off
+
+# USB
+# xrandr --output eDP-1 --off --output DP-1 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off
+
+# Displayport
+xrandr --output eDP-1 --off --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off --output DP-2-1 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output DP-2-2 --off --output DP-2-3 --off
+
+~/bin/set_dpi.sh 168
+

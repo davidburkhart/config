@@ -207,7 +207,7 @@ mode "$mode_launch" {
     bindsym i exec idea ; mode "default"
     bindsym j exec $HOME/bin/eclipse ; mode "default"
     bindsym t exec thunderbird ; mode "default"
-    bindsym q exec xdg-open $HOME/Dokumente/Stunden/Stunden_2021.ods ; mode "default"
+    bindsym q exec xdg-open $HOME/Dokumente/Stunden/Stunden_2022.ods ; mode "default"
     #bindsym s exec gksudo synaptic ; mode "default"
     #bindsym q exec libreoffice --calc ; mode "default"
     bindsym v exec $HOME/bin/vpn.sh ; mode "default"
@@ -264,9 +264,9 @@ exec --no-startup-id xautolock -detectsleep -time 10 -locker "$lock_screen_not_a
 exec --no-startup-id nm-applet
 exec --no-startup-id nextcloud
 exec --no-startup-id blueman-applet
-#exec --no-startup-id volumeicon
+exec --no-startup-id volumeicon
 exec --no-startup-id numlockx on
-exec --no-startup-id chromium --no-startup-window
+#exec --no-startup-id chromium --no-startup-window
 exec --no-startup-id amixer -q set Master mute
 exec --no-startup-id amixer sget Capture|grep " \[on\]" && amixer -q set Capture toggle
 exec --no-startup-id $HOME/bin/update_displays.sh

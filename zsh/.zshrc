@@ -103,7 +103,11 @@ export VISUAL="vim"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$HOME/bin:$PATH"
-alias o=xdg-open
+#alias o=xdg-open
+o() {
+  xdg-open "$@" &
+}
+
 alias updates="yay -Syu ; pkill -RTMIN+12 i3blocks"
 
 zstyle ':completion:*' special-dirs true
@@ -115,6 +119,10 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 alias ls="lsd --group-dirs first"
 
 export LESS="-FXR"
+
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        source /etc/profile.d/vte.sh
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

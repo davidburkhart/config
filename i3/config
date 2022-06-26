@@ -171,8 +171,8 @@ bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle && pkill 
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
-set $lock_screen ~/bin/lock_screen.sh
-set $lock_screen_not_at_home ~/bin/lock_screen_not_at_home.sh
+set $lock_screen /home/dave/bin/lock_screen.sh
+set $lock_screen_not_at_home /home/dave/bin/lock_screen_not_at_home.sh
 #set $lock_screen i3lock -f -i /usr/share/pixmaps/hd_sky_blue_beach-1920x1080.png -t -k --timesize=64 --timepos="ix-800:iy+200" 
 #set $lock_screen i3lock --blur 5 -k --timesize=64 --timepos="ix-800:iy+200" 
 
@@ -192,14 +192,13 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 bindsym $mod+Delete mode "$mode_system"
+bindsym $mod+Shift+s exec --no-startup-id systemctl suspend
 
 
 # Launch mode, one app per key.
-set $mode_launch Run (a)tom (c)hromium co(d)e (f)irefox (t)hunderbird fil(e)manager (i)ntellij (j)eclipse (q)calc (v)pn (w)indows
+set $mode_launch Run (c)hromium co(d)e (f)irefox (t)hunderbird fil(e)manager (i)ntellij (j)eclipse (q)calc (v)pn (w)indows
 mode "$mode_launch" {
-    bindsym a exec atom $HOME/Dokumente ; mode "default"
-    bindsym c exec firefox -P default ; mode "default"
-    # bindsym c exec chromium ; mode "default"
+    bindsym c exec chromium ; mode "default"
     bindsym d exec code $HOME/Dokumente ; mode "default"
     bindsym e exec thunar ; mode "default"
     bindsym f exec firefox -P default ; mode "default"
@@ -208,8 +207,6 @@ mode "$mode_launch" {
     bindsym j exec $HOME/bin/eclipse ; mode "default"
     bindsym t exec thunderbird ; mode "default"
     bindsym q exec xdg-open $HOME/Dokumente/Stunden/Stunden_2022.ods ; mode "default"
-    #bindsym s exec gksudo synaptic ; mode "default"
-    #bindsym q exec libreoffice --calc ; mode "default"
     bindsym v exec $HOME/bin/vpn.sh ; mode "default"
     bindsym w exec VBoxManage startvm "Windows 10" ; mode "default"
 
@@ -260,11 +257,15 @@ bindsym --release $Mod+Print exec scrot -s $HOME/Bilder/ScreenShot-`date +%Y-%m-
 bindsym $mod+l exec --no-startup-id $lock_screen
 #exec --no-startup-id cinnamon-screensaver
 
-exec --no-startup-id xautolock -detectsleep -time 10 -locker "$lock_screen_not_at_home"
+# exec --no-startup-id xautolock -detectsleep -time 10 -locker "$lock_screen_not_at_home"
+exec --no-startup-id sleep 5 && /home/dave/bin/power-switched.sh
+exec --no-startup-id xss-lock -l "$lock_screen" -n "/home/dave/bin/dim-screen.sh"
+
 exec --no-startup-id nm-applet
 exec --no-startup-id nextcloud
 exec --no-startup-id blueman-applet
 exec --no-startup-id volumeicon
+exec --no-startup-id psensor
 exec --no-startup-id numlockx on
 #exec --no-startup-id chromium --no-startup-window
 exec --no-startup-id amixer -q set Master mute
@@ -272,8 +273,12 @@ exec --no-startup-id amixer sget Capture|grep " \[on\]" && amixer -q set Capture
 exec --no-startup-id $HOME/bin/update_displays.sh
 exec --no-startup-id $HOME/bin/notify_home.sh
 exec --no-startup-id $HOME/bin/adjust_brightness.sh
-exec --no-startup-id secret-tool lookup keepass Keepass.kbdx | keepassxc --pw-stdin /home/dave/Keepass.kdbx
+exec --no-startup-id secret-tool lookup keepass Keepass.kbdx | keepassxc --pw-stdin /home/dave/Nextcloud-privat/Keepass.kdbx
+
+exec --no-startup-id feh --bg-fill Bilder/beach.jpg
+
 #exec --no-startup-id compton -f
+
 
 # refresh updates after some time, as wifi takes time to connect on startup
 exec --no-startup-id sleep 5 && pkill -RTMIN+12 i3blocks
